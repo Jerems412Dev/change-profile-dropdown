@@ -56,7 +56,7 @@ function App() {
     },
   ]);
 
-  const [profilesSearch, setProfilesSearch] = useState<typeof profiles>([]);
+  const [profilesSearch, setProfilesSearch] = useState<typeof profiles>(profiles);
   const input = useRef("");
   const [isFocus, setIsFocus] = useState(false);
   const handleChange = (value: string) => {
