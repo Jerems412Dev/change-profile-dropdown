@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'CircularStd';
+  src: url('./assets/police/CircularStd-Book.ttf') format('truetype');
+}
+
+body {
+  font-family: "CircularStd";
+  margin: 0;
+  padding: 0;
+}
