@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import { Check, ChevronsUpDown, Search } from 'lucide-react';
 
@@ -57,10 +57,9 @@ function App() {
   ]);
 
   const [profilesSearch, setProfilesSearch] = useState<typeof profiles>(profiles);
-  const input = useRef("");
-  const [isFocus, setIsFocus] = useState(false);
+  const [input, setInput] = useState("");
   const handleChange = (value: string) => {
-    input.current = value;
+    setInput(value);
     const list = profiles.filter(profile => profile.name.toLowerCase().includes(value.toLowerCase()));
     setProfilesSearch(list);
   };
@@ -96,12 +95,11 @@ function App() {
     setProfiles(newProfiles);
     setProfilesSearch(newProfilesSearch);
     setIsActive(false);
-    setIsFocus(false);
-    input.current = "";
+    setInput("");
   };
 
   const handleClear = () => {
-    input.current = "";
+    setInput("");
     setProfilesSearch(profiles);
   };
 
@@ -175,17 +173,15 @@ function App() {
               <Search size={22} color="#737373" />
               <input 
                 type="text"
-                onFocus={() => setIsFocus(true)} 
-                onBlur={() => setIsFocus(false)}
                 onChange={(event) => handleChange(event.target.value)}
-                value={input.current.valueOf()}
+                value={input}
                 className={"w-50 bg-transparent outline-none placeholder:text-[#737373] " + (change ? "text-black" : "text-white")} placeholder="Search..." />
               <span className={"flex flex-row items-center justify-center rounded-lg text-xs py-1 px-2 inset-ring-1 " + (change ? "inset-ring-[#d4d3d3] text-black" : "inset-ring-[#202020] text-white")}>
                 Esc
               </span>
             </div>
             <hr className={"w-full border-[solid 0.5px] " + (change ? "border-[#d4d3d3]" : "border-[#202020]")} />
-            {!isFocus && input.current === "" ?
+            {input.length <= 0 ?
               <div className="w-full flex flex-col items-center justify-center p-0.5">
                 {
                   profiles.map((profile, index) => (
@@ -215,7 +211,7 @@ function App() {
                   profilesSearch.map((profile, index) => (
                     <div 
                       key={index} 
-                      onClick={() => handleChecked(index)}
+                      onClick={() => handleChecked(profile.id)}
                       className={"w-full cursor-pointer flex flex-row items-center py-2 px-4 rounded-xl justify-between " + (change ? " hover:bg-[#aeaeb617]" : "hover:bg-[#aeaeb613]")}>
                         <div className="flex flex-row items-center gap-x-2">
                           <span 
