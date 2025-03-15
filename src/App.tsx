@@ -169,13 +169,16 @@ function App() {
             <ChevronsUpDown size={32} color="#737373" />
           </button>
           <div className={"hidden w-full flex-col items-center justify-between gap-y-2 p-2.5 rounded-3xl border-[#202020] inset-ring-1 " + (change ? "bg-[#fdfdfb] inset-ring-[#d4d3d3]" : "bg-[#0e0e0e] inset-ring-[#202020]") + (isActive ? " transition-active" : " transition-active-back")}>
-            <div className="w-full flex flex-row items-center justify-start px-5 py-2 gap-x-2">
-              <Search size={22} color="#737373" />
-              <input 
-                type="text"
-                onChange={(event) => handleChange(event.target.value)}
-                value={input}
-                className={"w-50 bg-transparent outline-none placeholder:text-[#737373] " + (change ? "text-black" : "text-white")} placeholder="Search..." />
+            <div className="w-full flex flex-row items-center justify-between px-5 py-2">
+              <div className="flex flex-row items-center justify-between gap-x-1">
+                <Search size={22} color="#737373" />
+                <input 
+                  type="text"
+                  onChange={(event) => handleChange(event.target.value)}
+                  value={input}
+                  className={"w-[90%] bg-transparent outline-none placeholder:text-[#737373] " + (change ? "text-black" : "text-white")} placeholder="Search..." 
+                />
+              </div>
               <span className={"flex flex-row items-center justify-center rounded-lg text-xs py-1 px-2 inset-ring-1 " + (change ? "inset-ring-[#d4d3d3] text-black" : "inset-ring-[#202020] text-white")}>
                 Esc
               </span>
